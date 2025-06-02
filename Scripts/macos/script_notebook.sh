@@ -330,7 +330,7 @@ else
 fi
 
 # Checkout to the correct branch
-GIT_BRANCH="mac-scripts-daily"
+GIT_BRANCH="mac-script-daily"
 if git checkout "$GIT_BRANCH" 2>/dev/null; then
     log_success "Checked out to branch '$GIT_BRANCH'."
 else
