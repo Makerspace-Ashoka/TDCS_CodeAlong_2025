@@ -3,6 +3,7 @@ $desktopPath = [System.Environment]::GetFolderPath('Desktop')
 $repoName = 'Makerspace_YSP_TDCS'
 $repoLink = 'https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git'
 $pythonVenvPath = "$desktopPath\$repoName\Notebooks\"
+$gitBranch = 'win-script-daily'
 
 # --- Utility functions ---
 function Write-Info($msg) { Write-Host $msg -ForegroundColor Green }
@@ -187,7 +188,7 @@ Write-Host @'
 if (-not (Test-Path $repoName)) {
     try {
         Write-Info "Cloning repository from $repoLink..."
-        $cloneResult = git clone $repoLink $repoName 2>&1
+        $cloneResult = git clone $repoLink $repoName  2>&1
         if ($LASTEXITCODE -eq 0) {
             Write-Info 'Repository cloned successfully.'
         } else {
@@ -201,6 +202,15 @@ if (-not (Test-Path $repoName)) {
 } else {
     Write-Info 'Repository already exists. Skipping clone.'
 }
+
+    try {
+        Set-Location $repoName
+        Write-Info "Switching to branch: $gitBranch"
+        git checkout $gitBranch
+    } catch {
+        Write-ErrorMsg "An error occurred while trying to switch branches: $_"
+        $failures += "Git checkout branch error"
+    }
 
 
 # --- Step 7: Create a virtual environment and install dependencies ---
@@ -226,7 +236,8 @@ if (Test-Path $pythonVenvPath) {
         Write-ErrorMsg "An error occurred while trying to run 'uv sync': $_"
         $failures += "uv sync error"
     }
-    
+
+    $pyCommand =  uv python list --only-installed --managed-python
     Set-Location $desktopPath
 } else {
     Write-ErrorMsg "Appropriate folder not found for virtual environment."
