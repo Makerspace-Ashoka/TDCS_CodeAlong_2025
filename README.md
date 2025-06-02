@@ -77,7 +77,7 @@ xcode-select --install
 ### 5. Run the YSP Install Script
 
 ```bash
-bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/mac-script-daily/Scripts/macos/run.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/mac-script-daily/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
+bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/mac-script-daily/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/mac-script-daily/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
 ```
 
 If Visual Studio Code opens — success! 🎉
