@@ -260,7 +260,7 @@ setup_environment_and_shell() {
         code --install-extension ms-python.python
         code --install-extension ms-python.vscode-pylance
         code --install-extension ms-toolsai.jupyter
-        code --install-extension ms-vscode.vscode-serial-monitor
+        # code --install-extension ms-vscode.vscode-serial-monitor
     else
         log_error "Could not install VS Code extensions - 'code' command not available"
     fi
@@ -311,7 +311,7 @@ else
     # Default install behavior
     install_core_dependencies
     setup_environment_and_shell
-    install_python_tools
+    # install_python_tools
 fi
 
 # Clone repository
@@ -410,7 +410,7 @@ fi
     # Open VS Code
     if command_exists code; then
         log_info "Opening Visual Studio Code..."
-        code .
+        code "$PROJECT_DIR"
         log_success "VS Code opened in project directory."
     elif is_vscode_installed; then
         log_info "Opening VS Code via open command..."
