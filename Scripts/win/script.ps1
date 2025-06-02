@@ -1,7 +1,7 @@
 # --- Variables ---
 $desktopPath = [System.Environment]::GetFolderPath('Desktop')
-$repoName = 'Makerspace_YSP_ESP32_Mesh'
-$repoLink = 'https://github.com/Makerspace-Ashoka/ysp-esp32-mesh-firmware.git'
+$repoName = 'Makerspace_YSP_TDCS'
+$repoLink = 'https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git'
 $pythonVenvPath = "$desktopPath\$repoName\python-interface\src\"
 
 # --- Utility functions ---
@@ -80,6 +80,10 @@ try {
     Write-Info 'Git not found or invalid. Installing...'
     winget install --silent --accept-package-agreements --accept-source-agreements Git.Git
     Start-Sleep -Seconds 5
+
+    # Refresh environment variables for the current session
+    $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+
     $gitVersion = & git --version 2>&1
     if ($gitVersion -match 'git version \d+\.\d+') {
         Write-Info "Git installed successfully: $gitVersion"
