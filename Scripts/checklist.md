@@ -69,6 +69,3 @@ If you're not using Windows or macOS (like Linux or something else), you'll need
 
 Don’t hesitate to reach out to an instructor if you’re stuck — we’re here to help!
 
----
-
-Let me know if you want a printable version or a version with checkboxes for students to tick off.
