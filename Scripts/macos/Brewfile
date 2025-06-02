@@ -1,0 +1,6 @@
+# command line interface (CLI) tools
+brew "git"
+brew "uv"
+
+# graphical user interface (GUI) tools
+cask "visual-studio-code"

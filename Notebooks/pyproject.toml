@@ -1,0 +1,13 @@
+[project]
+name = "Makerspace_YSP_TDCS"
+version = "2025.2"
+description = "Makerspace YSP TDCS Sessions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "ipython>=9.3.0",
+]
+
+[tool.uv]
+python-preference = "only-managed"
