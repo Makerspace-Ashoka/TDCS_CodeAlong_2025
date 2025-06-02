@@ -15,7 +15,7 @@ This setup guide will walk you through installing essential applications. If you
 
 1. Identify your computer’s operating system (Windows or macOS).
 2. Follow the corresponding steps below.
-3. If something doesn’t work, try a manual installation using the [checklist](https://github.com/Makerspace-Ashoka/YSP_TDCS_2025/blob/init_setup_edition_2/Scripts/checklist.md).
+3. If something doesn’t work, try a manual installation using the [checklist](https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/blob/init_setup_edition_2/Scripts/checklist.md).
 
 ---
 
@@ -28,7 +28,7 @@ Follow these steps carefully:
 Click the **copy icon** on the top right corner of the code block below:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/main/Scripts/win/script_notebook.ps1' | iex }"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/win/script_notebook.ps1' | iex }"
 ```
 
 ### 2. Open PowerShell
@@ -62,7 +62,7 @@ Follow these instructions step by step:
 ### 2. Run the YSP Install Script
 
 ```bash
-bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
+bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
 ```
 
 If Visual Studio Code opens — success! 🎉
