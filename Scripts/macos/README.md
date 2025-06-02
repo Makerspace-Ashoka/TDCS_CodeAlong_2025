@@ -21,24 +21,9 @@ A script to completely uninstall the development environment set up by the YSP T
 Run directly from GitHub without downloading:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/init_setup_edition_2/Scripts/macos/purge_macos.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/init_setup_edition_2/Scripts/macos/purge_macos.sh -o ~/purge_macos.sh && bash ~/purge_macos.sh 
 ```
 
-### With Options
-
-```bash
-# Keep Homebrew installed (only remove packages)
-curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/init_setup_edition_2/Scripts/macos/purge_macos.sh | bash -s -- --keep-homebrew
-
-# Keep Homebrew and Xcode tools
-curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/init_setup_edition_2/Scripts/macos/purge_macos.sh | bash -s -- --keep-homebrew --keep-xcode
-
-# Keep the repository but remove everything else
-curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/init_setup_edition_2/Scripts/macos/purge_macos.sh | bash -s -- --keep-repo
-
-# Keep everything except packages (minimal uninstall)
-curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/init_setup_edition_2/Scripts/macos/purge_macos.sh | bash -s -- --keep-homebrew --keep-xcode --keep-repo
-```
 
 ## 📥 Manual Download & Run
 
