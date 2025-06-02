@@ -3,7 +3,7 @@ $desktopPath = [System.Environment]::GetFolderPath('Desktop')
 $repoName = 'Makerspace_YSP_TDCS'
 $repoLink = 'https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git'
 $pythonVenvPath = "$desktopPath\$repoName\Notebooks\"
-$gitBranch = 'win-script-daily'
+$gitBranch = 'init_setup_edition_2'
 
 # --- Utility functions ---
 function Write-Info($msg) { Write-Host $msg -ForegroundColor Green }

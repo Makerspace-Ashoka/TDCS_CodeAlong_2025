@@ -15,7 +15,7 @@ This setup guide will walk you through installing essential applications. If you
 
 1. Identify your computer’s operating system (Windows or macOS).
 2. Follow the corresponding steps below.
-3. If something doesn’t work, try a manual installation using the [checklist](https://github.com/tushara04/YSP_Day1/blob/main/checklist.md).
+3. If something doesn’t work, try a manual installation using the [checklist](https://github.com/Makerspace-Ashoka/YSP_TDCS_2025/blob/main/Scripts/checklist.md).
 
 ---
 
@@ -28,7 +28,7 @@ Follow these steps carefully:
 Click the **copy icon** on the top right corner of the code block below:
 
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/tushara04/YSP_Day1/refs/heads/main/windows/script.bat" -OutFile "script.bat"; Start-Process "script.bat"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/init_setup_edition_2/Scripts/win/script_notebook.ps1' | iex }"
 ```
 
 ### 2. Open PowerShell
