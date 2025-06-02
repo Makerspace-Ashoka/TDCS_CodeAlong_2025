@@ -1,7 +1,0 @@
-{
-    "python.defaultInterpreterPath": ".venv\\Scripts\\python.exe",
-    "python.pythonPath": ".venv\\Scripts\\python.exe",
-    "jupyter.jupyterServerType": "local",
-    "jupyter.kernelsFilter": ".*",
-    "jupyter.notebook.defaultKernel": ".venv\\Scripts\\python.exe"
-}
