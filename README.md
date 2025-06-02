@@ -28,7 +28,7 @@ Follow these steps carefully:
 Click the **copy icon** on the top right corner of the code block below:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/init_setup_edition_2/Scripts/win/script_notebook.ps1' | iex }"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/main/Scripts/win/script_notebook.ps1' | iex }"
 ```
 
 ### 2. Open PowerShell
@@ -57,27 +57,12 @@ Follow these instructions step by step:
 * Press **Cmd + Space**.
 * Type `terminal`, then press **Enter**.
 
-### 2. Install Xcode Command Line Tools
+
+
+### 2. Run the YSP Install Script
 
 ```bash
-xcode-select --install
-```
-
-### 3. Install Homebrew
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-### 4. Restart Terminal
-
-* Close the Terminal window.
-* Reopen it to apply changes.
-
-### 5. Run the YSP Install Script
-
-```bash
-bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/mac-script-daily/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/mac-script-daily/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
+bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
 ```
 
 If Visual Studio Code opens — success! 🎉
