@@ -135,33 +135,6 @@ is_vscode_installed() {
     [ -d "/Applications/Visual Studio Code.app" ]
 }
 
-# Function to print colored text
-print_banner() {
-    # ANSI color codes
-    local MAGENTA='\033[35m'
-    local YELLOW='\033[33m'
-    local NC='\033[0m' # No Color
-    
-    # Print the ASCII art banner in magenta
-    echo -e "${MAGENTA}"
-    cat << 'EOF'
-
-___  ___      _                                              __   __        __   _____________ 
-|  \/  |     | |                                             \ \ / /        \ \ / /  ___| ___ \
-| .  . | __ _| | _____ _ __ ___ _ __   __ _  ___ ___    ______\ V /______    \ V /\ `--.| |_/ /
-| |\/| |/ _` | |/ / _ \ '__/ __| '_ \ / _` |/ __/ _ \  |______/   \______|    \ /  `--. \  __/ 
-| |  | | (_| |   <  __/ |  \__ \ |_) | (_| | (_|  __/        / /^\ \          | | /\__/ / |    
-\_|  |_/\__,_|_|\_\___|_|  |___/ .__/ \__,_|\___\___|        \/   \/          \_/ \____/\_|    
-                               | |                                                             
-                               |_|                                                             
-   
-EOF
-    echo -e "${NC}"
-    
-    # Print the description in yellow
-    echo -e "${YELLOW}This script sets up your development environment by installing and configuring essential tools and extensions.${NC}"
-    echo ""
-}
 # Function to setup VS Code command line tool
 setup_vscode_cli() {
     if command_exists code; then
@@ -330,7 +303,6 @@ install_python_tools() {
 
 # Main execution
 
-print_banner
 
 if [ "$_arg_update" = "on" ]; then
     setup_homebrew_path
@@ -357,43 +329,83 @@ else
     fi
 fi
 
-# Setup Python environment
-PROJECT_DIR="$REPO_DIR/python-interface/src"
+# Checkout to the correct branch
+GIT_BRANCH="main"
+if git checkout "$GIT_BRANCH" 2>/dev/null; then
+    log_success "Checked out to branch '$GIT_BRANCH'."
+else
+    log_error "Failed to checkout to branch '$GIT_BRANCH'."
+fi
+
+
+# Setup UV environment
+PROJECT_DIR="$REPO_DIR/Notebooks"
 if [ -d "$PROJECT_DIR" ]; then
+    log_info "Project directory found: $PROJECT_DIR"
     cd "$PROJECT_DIR" || {
         log_error "Could not navigate to project directory"
         exit 1
     }
 
-    log_info "Creating Python virtual environment..."
-    # Detect Python command
-    local python_cmd=$(detect_python)
-    if [ -z "$python_cmd" ]; then
-        python_cmd="python3"
-    fi
+    log_info "Setting up UV environment..."
 
-    # Create virtual environment
-    "$python_cmd" -m venv .venv
-    if [ $? -eq 0 ]; then
-        log_success "Virtual environment created."
 
-        # Activate virtual environment and install requirements
-        log_info "Installing project requirements..."
-        source .venv/bin/activate
 
-        if [ -f "requirements.txt" ]; then
-            pip install -r requirements.txt
-            if [ $? -eq 0 ]; then
-                log_success "Requirements installed successfully."
-            else
-                log_error "Failed to install some requirements"
-            fi
-        else
-            log_error "requirements.txt not found in $PROJECT_DIR"
-        fi
+    # Check if uv is installed
+    if ! command_exists uv; then
+        log_error "Command 'uv' not found. This should've been installed by the Brewfile."
     else
-        log_error "Failed to create virtual environment"
+        log_info "Found 'uv' command."
     fi
+
+
+    uv sync
+    if [ $? -eq 0 ]; then
+        log_success "UV environment synced successfully."
+    else
+        log_error "Failed to sync UV environment"
+    fi
+fi
+     
+
+
+# # Setup Python environment
+# PROJECT_DIR="$REPO_DIR/python-interface/src"
+# if [ -d "$PROJECT_DIR" ]; then
+#     cd "$PROJECT_DIR" || {
+#         log_error "Could not navigate to project directory"
+#         exit 1
+#     }
+
+#     log_info "Creating Python virtual environment..."
+#     # Detect Python command
+#     local python_cmd=$(detect_python)
+#     if [ -z "$python_cmd" ]; then
+#         python_cmd="python3"
+#     fi
+
+#     # Create virtual environment
+#     "$python_cmd" -m venv .venv
+#     if [ $? -eq 0 ]; then
+#         log_success "Virtual environment created."
+
+#         # Activate virtual environment and install requirements
+#         log_info "Installing project requirements..."
+#         source .venv/bin/activate
+
+#         if [ -f "requirements.txt" ]; then
+#             pip install -r requirements.txt
+#             if [ $? -eq 0 ]; then
+#                 log_success "Requirements installed successfully."
+#             else
+#                 log_error "Failed to install some requirements"
+#             fi
+#         else
+#             log_error "requirements.txt not found in $PROJECT_DIR"
+#         fi
+#     else
+#         log_error "Failed to create virtual environment"
+#     fi
 
     # Open VS Code
     if command_exists code; then

@@ -1,6 +1,6 @@
 # command line interface (CLI) tools
 brew "git"
-brew "python3"
+brew "uv"
 brew "ipython"
 
 # graphical user interface (GUI) tools
