@@ -44,6 +44,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://r
 If a terminal window opens and Visual Studio Code launches at any point — you're all set! 🎉
 Let your instructor know you're done.
 
+#### Alternatively, you can follow the manual setup process: [Click Here](https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/blob/main/Scripts/manual_installation/windows.md).
 ---
 
 ## 🍏 macOS Setup
@@ -52,28 +53,35 @@ Follow these instructions step by step:
 
 > 💡 **Tip:** Click the **copy icon** to easily copy each code snippet.
 
-### 1. Open Terminal
-
-* Press **Cmd + Space**.
-* Type `terminal`, then press **Enter**.
-
-
-
-### 2. Run the YSP Install Script
+### 1. Copy the Setup Code
 
 ```bash
 bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
 ```
 
+### 2. Open Terminal
+
+* Press **Cmd + Space**.
+* Type `terminal`, then press **Enter**.
+
+
+### 2. Paste & Run the YSP Install Script
+* Paste the copied code into Terminal using **Cmd + V**.
+* Press **Enter**.
+* You may be prompted to enter your password multiple times. Type it in (you won’t see it) and press **Enter**.
+
+
 If Visual Studio Code opens — success! 🎉
 Let your instructor know you’re done.
+
+#### Alternatively, you can follow the manual setup process: [Click Here](https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/blob/main/Scripts/manual_installation/macOS.md).
 
 ---
 
 ## ❓ Need Help?
 
-Don’t worry! Ask your instructor or come by during office hours — they’ve got you.
 
+Don’t worry! Ask your instructor or come by during office hours — they’ve got you.
 ---
 
 Let me know if you’d like this in a different format (e.g., PDF or printed handout style).
