@@ -1,6 +1,4 @@
 
----
-
 <div align="center">
   <h1>🧠 YSP TDCS Repository</h1>
   <p>👋 Welcome to YSP 2025!</p>
