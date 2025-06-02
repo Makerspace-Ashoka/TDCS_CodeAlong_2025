@@ -329,6 +329,9 @@ install_python_tools() {
 }
 
 # Main execution
+
+print_banner
+
 if [ "$_arg_update" = "on" ]; then
     setup_homebrew_path
     setup_environment_and_shell

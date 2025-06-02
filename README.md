@@ -15,7 +15,7 @@ This setup guide will walk you through installing essential applications. If you
 
 1. Identify your computer’s operating system (Windows or macOS).
 2. Follow the corresponding steps below.
-3. If something doesn’t work, try a manual installation using the [checklist](https://github.com/Makerspace-Ashoka/YSP_TDCS_2025/blob/main/Scripts/checklist.md).
+3. If something doesn’t work, try a manual installation using the [checklist](https://github.com/Makerspace-Ashoka/YSP_TDCS_2025/blob/init_setup_edition_2/Scripts/checklist.md).
 
 ---
 
