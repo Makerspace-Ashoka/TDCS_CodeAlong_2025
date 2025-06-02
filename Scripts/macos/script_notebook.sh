@@ -322,20 +322,26 @@ if git clone https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git "$REPO_DIR" 
 else
     if [ -d "$REPO_DIR" ]; then
         log_info "Repository already exists. Pulling latest changes..."
-        cd "$REPO_DIR" && git pull && cd - >/dev/null
+        cd "$REPO_DIR" && git pull
         log_success "Repository updated."
+        
+        # Checkout to the correct branch
+        GIT_BRANCH="mac-script-daily"
+        if git checkout "$GIT_BRANCH" 2>/dev/null; then
+            log_success "Checked out to branch '$GIT_BRANCH'."
+        else
+            log_error "Failed to checkout to branch '$GIT_BRANCH'."
+        cd - >/dev/null
+fi
+
+
     else
         log_error "Failed to clone repository"
     fi
 fi
 
-# Checkout to the correct branch
-GIT_BRANCH="mac-script-daily"
-if git checkout "$GIT_BRANCH" 2>/dev/null; then
-    log_success "Checked out to branch '$GIT_BRANCH'."
-else
-    log_error "Failed to checkout to branch '$GIT_BRANCH'."
-fi
+
+
 
 
 # Setup UV environment
