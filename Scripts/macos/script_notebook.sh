@@ -303,6 +303,10 @@ install_python_tools() {
 
 # Main execution
 
+cd $HOME || {
+    log_error "Could not change to home directory"
+    exit 1
+}
 
 if [ "$_arg_update" = "on" ]; then
     setup_homebrew_path
