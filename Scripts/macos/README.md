@@ -1,8 +1,22 @@
 # macOS Development Environment Uninstaller
 
+⚠️ **DANGER: DESTRUCTIVE SCRIPT** ⚠️
+
+This script **PERMANENTLY DELETES** software and files from your system. It will remove Homebrew packages, Python environments, and can completely uninstall Homebrew and Xcode tools.
+
+🛑 **STOP AND READ THIS FIRST:**
+- **BACKUP YOUR DATA** before running this script
+- This affects ALL projects using Homebrew, not just the workshop
+- Removing Xcode tools affects ALL development work on your Mac
+- The YSP_TDCS_2025 repository will be **permanently deleted**
+
+---
+
 A script to completely uninstall the development environment set up by the YSP TDCS 2025 setup script.
 
 ## 🚀 Quick Start (One-Line Install)
+
+⚠️ **READ THE WARNING ABOVE FIRST** ⚠️
 
 Run directly from GitHub without downloading:
 
