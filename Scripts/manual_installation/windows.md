@@ -105,7 +105,7 @@ Python is the main programming language we’ll use.
 ### Install Python with winget:
 
 ```
-winget install --id Python.Python.3 --exact
+winget install --accept-package-agreements --accept-source-agreements  Python.Python.3.12
 ```
 
 Then check again with:

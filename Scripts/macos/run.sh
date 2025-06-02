@@ -135,6 +135,33 @@ is_vscode_installed() {
     [ -d "/Applications/Visual Studio Code.app" ]
 }
 
+# Function to print colored text
+print_banner() {
+    # ANSI color codes
+    local MAGENTA='\033[35m'
+    local YELLOW='\033[33m'
+    local NC='\033[0m' # No Color
+    
+    # Print the ASCII art banner in magenta
+    echo -e "${MAGENTA}"
+    cat << 'EOF'
+
+___  ___      _                                              __   __        __   _____________ 
+|  \/  |     | |                                             \ \ / /        \ \ / /  ___| ___ \
+| .  . | __ _| | _____ _ __ ___ _ __   __ _  ___ ___    ______\ V /______    \ V /\ `--.| |_/ /
+| |\/| |/ _` | |/ / _ \ '__/ __| '_ \ / _` |/ __/ _ \  |______/   \______|    \ /  `--. \  __/ 
+| |  | | (_| |   <  __/ |  \__ \ |_) | (_| | (_|  __/        / /^\ \          | | /\__/ / |    
+\_|  |_/\__,_|_|\_\___|_|  |___/ .__/ \__,_|\___\___|        \/   \/          \_/ \____/\_|    
+                               | |                                                             
+                               |_|                                                             
+   
+EOF
+    echo -e "${NC}"
+    
+    # Print the description in yellow
+    echo -e "${YELLOW}This script sets up your development environment by installing and configuring essential tools and extensions.${NC}"
+    echo ""
+}
 # Function to setup VS Code command line tool
 setup_vscode_cli() {
     if command_exists code; then
@@ -313,9 +340,9 @@ else
 fi
 
 # Clone repository
-log_info "Cloning ESP32 Mesh Firmware repository..."
-REPO_DIR="$HOME/Desktop/Makerspace_YSP_ESP32_Mesh"
-if git clone https://github.com/Makerspace-Ashoka/ysp-esp32-mesh-firmware.git "$REPO_DIR" 2>/dev/null; then
+log_info "Cloning YSP TDCS repository..."
+REPO_DIR="$HOME/Desktop/YSP_TDCS_2025"
+if git clone https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git "$REPO_DIR" 2>/dev/null; then
     log_success "Repository cloned to Desktop."
 else
     if [ -d "$REPO_DIR" ]; then

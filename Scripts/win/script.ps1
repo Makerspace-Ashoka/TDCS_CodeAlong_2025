@@ -1,8 +1,8 @@
 # --- Variables ---
 $desktopPath = [System.Environment]::GetFolderPath('Desktop')
-$repoName = 'Makerspace_YSP_ESP32_Mesh'
-$repoLink = 'https://github.com/Makerspace-Ashoka/ysp-esp32-mesh-firmware.git'
-$pythonVenvPath = "$desktopPath\$repoName\python-interface\src\"
+$repoName = 'YSP_TDCS_2025'
+$repoLink = 'https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git'
+$pythonVenvPath = "$desktopPath\$repoName"
 
 
 # --- Utility functions ---
