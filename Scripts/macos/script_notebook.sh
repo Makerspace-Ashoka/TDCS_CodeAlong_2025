@@ -407,6 +407,7 @@ fi
 #         log_error "Failed to create virtual environment"
 #     fi
 
+if [ -d "$PROJECT_DIR" ]; then
     # Open VS Code
     if command_exists code; then
         log_info "Opening Visual Studio Code..."
