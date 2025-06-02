@@ -12,9 +12,8 @@ This guide will walk you through all the setup steps — one by one. No coding e
 You’ll be installing:
 
 * Git (used to download code from the internet)
-* Python (a programming language)
+* Python (a programming language) - Installed  via uv
 * VS Code (a code editor)
-* Some helper tools (like Jupyter)
 * The actual files you’ll use in the workshop
 
 ---
@@ -96,27 +95,27 @@ brew install git
 
 ---
 
-## 🐍 Step 2: Install Python
+## 🐍 Step 2: Install Python 
 
-Python is the programming language you’ll use in the workshop.
+Python is the programming language you’ll use in the workshop. We're using `uv` to manage Python versions.
 
 ### Check your version:
 
 ```bash
-python3 --version
+uv --version
 ```
 
-* ✅ If it’s **3.10 or higher**, you’re good.
+* ✅ If it’s **0.6 or higher**, you’re good.
 * ❌ If not:
 
 ```bash
-brew install python
+brew install uv
 ```
 
 Then check again:
 
 ```bash
-python3 --version
+uv --version
 ```
 
 ---
@@ -142,27 +141,22 @@ brew install --cask visual-studio-code
 
 ## 📁 Step 4: Get the Workshop Files
 
-### Option A: Use Git
+###  A: Use Git
 
 ```bash
-git clone https://github.com/YOUR-LINK-HERE.git
+cd ~/Desktop && git clone https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025.git
 ```
 
-### Option B: Manual Download
 
-1. Open the link from your instructor.
-2. Click **Code** → **Download ZIP**.
-3. Open your **Downloads** folder and double-click the ZIP to extract it.
 
----
 
 ## 📂 Step 5: Open the Files in VS Code
 
 1. In Terminal, go to your project folder:
 
    ```bash
-   cd ~/Downloads
-   cd [folder name]
+   cd ~/Desktop/TDCS_CodeAlong_2025/Notebooks
+   uv sync
    code .
    ```
 2. This opens your project in VS Code.
@@ -177,4 +171,3 @@ If something doesn’t work, don’t worry. Just ask your instructor — they’
 
 ---
 
-Let me know if you'd like a version of this with screenshots or printable checklists!

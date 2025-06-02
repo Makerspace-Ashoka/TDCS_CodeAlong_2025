@@ -13,9 +13,8 @@ This guide will help you install everything you need **step-by-step**. No prior 
 You’ll be installing:
 
 * Git (used to download code from the internet)
-* Python (a programming language)
+* Python (a programming language) - via uv
 * VS Code (a code editor)
-* Some helper tools (like Jupyter)
 * The actual files you’ll use in the workshop
 
 ---
@@ -90,28 +89,21 @@ Python is the main programming language we’ll use.
 2. Type:
 
    ```
-   python --version
+   uv --version
    ```
-
-   or
-
-   ```
-   python3 --version
-   ```
-
-   * ✅ If you see a version **3.10 or higher**, skip to Step 3.
+   * ✅ If you see a version **0.6 or higher**, skip to Step 3.
    * ❌ If not, install it:
 
 ### Install Python with winget:
 
 ```
-winget install --accept-package-agreements --accept-source-agreements  Python.Python.3.12
+winget install --id=astral-sh.uv -e --accept-package-agreements --accept-source-agreements
 ```
 
 Then check again with:
 
 ```
-python --version
+uv --version
 ```
 
 ---
@@ -150,21 +142,14 @@ code --version
 
 Now you need to download the files you’ll be working on.
 
-### Option A: If you know Git (or followed Step 1)
 
 Open Command Prompt and type:
 
 ```
-git clone https://github.com/YOUR-LINK-HERE.git
+git clone https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025.git
 ```
 
-(Replace with the actual GitHub link provided by your instructor.)
 
-### Option B: Manual Download
-
-1. Go to the GitHub link your instructor gave you.
-2. Click the green **Code** button → then click **Download ZIP**.
-3. Find the `.zip` file in your **Downloads** folder and right-click → **Extract All**.
 
 ---
 
@@ -176,8 +161,8 @@ Once the folder is ready:
 2. Type:
 
    ```powershell
-   cd Documents
-   cd [folder name you extracted]
+   cd .\Desktop\TDCS_CodeAlong_2025\Notebooks\
+   uv sync
    code .
    ```
 3. This will open the project in VS Code.
@@ -191,5 +176,3 @@ If everything installed properly, you're all set! 🎉 You can now start working
 If **something doesn’t work**, don’t panic — just ask an instructor for help. That’s what we’re here for.
 
 ---
-
-Let me know if you'd like this turned into a printable checklist or want a version with screenshots!
