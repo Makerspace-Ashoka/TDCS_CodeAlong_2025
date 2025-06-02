@@ -50,6 +50,10 @@ if (-not $winget) {
     Write-ErrorMsg 'Winget not found. Opening Microsoft Store to install App Installer.'
     Start-Process 'ms-windows-store://pdp/?productid=9NBLGGH4NNS1'
     Read-Host 'Please install App Installer, then press Enter to continue...'
+    
+    # Refresh environment variables for the current session
+    $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+
     $winget = Get-Command winget -ErrorAction SilentlyContinue
     if (-not $winget) {
         Write-ErrorMsg 'Winget still not found. Exiting.'
@@ -93,44 +97,34 @@ try {
     }
 }
 
-# --- Step 3: Python ---
+# --- Step 3: UV ---
 Write-Host @'
-=====================================
-  [ Step 3/8: Checking for Python ]
-=====================================
+===================================
+  [ Step 3/8: Checking for UV ]
+===================================
 '@ -ForegroundColor Magenta
 
-$pyCommand = $null
-$pythonAliases = @('python', 'python3', 'py')
-foreach ($alias in $pythonAliases) {
-    try {
-        $pyVersion = & $alias --version 2>&1
-        if ($pyVersion -match 'Python \d+\.\d+') {
-            $pyCommand = $alias
-            Write-Info "Python found: $pyVersion (using alias: $pyCommand)"
-            break
-        }
-    } catch { }
-}
-
-if (-not $pyCommand) {
-    Write-Info 'Python not found. Installing...'
-    winget install --silent --accept-package-agreements --accept-source-agreements Python.Python.3.12
-    Start-Sleep -Seconds 5
-    # Recheck installation
-    foreach ($alias in $pythonAliases) {
-        try {
-            $pyVersion = & $alias --version 2>&1
-            if ($pyVersion -match 'Python \d+\.\d+') {
-                $pyCommand = $alias
-                Write-Info "Python installed successfully: $pyVersion (using alias: $pyCommand)"
-                break
-            }
-        } catch { }
+try {
+    $uvVersion = & uv --version 2>&1
+    if ($uvVersion -match 'uv \d+\.\d+\.\d+') {
+        Write-Info "UV is already installed: $uvVersion"
+    } else {
+        throw 'UV output invalid.'
     }
-    if (-not $pyCommand) {
-        Write-ErrorMsg 'Python installation failed. Please check manually.'
-        $failures += "Python installation failed"
+} catch {
+    Write-Info 'UV not found or invalid. Installing...'
+    winget install --id=astral-sh.uv -e --silent --accept-package-agreements --accept-source-agreements
+    Start-Sleep -Seconds 5
+
+    # Refresh environment variables for the current session
+    $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+
+    $uvVersion = & uv --version 2>&1
+    if ($uvVersion -match 'uv \d+\.\d+\.\d+') {
+        Write-Info "UV installed successfully: $uvVersion"
+    } else {
+        Write-ErrorMsg 'UV installation failed.'
+        $failures += "UV installation failed"
     }
 }
 
@@ -152,6 +146,10 @@ try {
     Write-Info 'VS Code not found. Installing...'
     winget install --silent --accept-package-agreements --accept-source-agreements Microsoft.VisualStudioCode
     Start-Sleep -Seconds 5
+
+    # Refresh environment variables for the current session
+    $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+
     $codeVersion = & code --version 2>&1
     if ($codeVersion -match '^\d+\.\d+\.\d+') {
         Write-Info "VS Code installed successfully: $($codeVersion -split "`n")[0]"
