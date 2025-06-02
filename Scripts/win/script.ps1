@@ -173,7 +173,7 @@ $extensions = @(
     'ms-vscode.vscode-serial-monitor'
 )
 foreach ($ext in $extensions) {
-    Write-Info "Installing VS Code extension: $ext"
+    Write-Info "Checking for VS Code extension: $ext"
     code --install-extension $ext | Out-Null
 }
 
