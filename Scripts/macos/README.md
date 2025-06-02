@@ -38,8 +38,8 @@ curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/YSP_TDCS_2025/ini
 chmod +x purge_macos.sh
 
 # Run with options
-./uninstall.sh --help
-./uninstall.sh --keep-homebrew
+./purge_macos.sh --help
+./purge_macos.sh --keep-homebrew
 ```
 
 ## 🗂️ What Gets Uninstalled
