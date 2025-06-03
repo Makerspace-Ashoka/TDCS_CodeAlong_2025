@@ -6,6 +6,27 @@
 </div>
 
 ---
+## 🗓️ Day 2: June 4th, 2025
+
+For Day 2, we will be updating the already cloned repository and moving forward with the python exercises.
+
+### 🔧 What to Do
+1. Open your terminal or command prompt.
+3. Copy the following command based on your operating system:
+
+    If you are using Windows 🪟:
+   ```powershell
+   ```
+
+   Or if you are using macOS 🍏:
+   ```bash
+    ```
+4. Paste the command and hit **Enter**.
+5. Wait for the process to complete. This will update your local repository with the latest changes.
+6. Once done, you can start working on the Python exercises. 
+
+
+---
 
 ## 📅 Day 1: June 3rd, 2025
 
