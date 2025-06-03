@@ -1,9 +1,9 @@
 # --- Variables ---
 $desktopPath = [System.Environment]::GetFolderPath('Desktop')
-$repoName = 'Makerspace_YSP_TDCS'
-$repoLink = 'https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git'
+$repoName = 'TDCS_CodeAlong_2025'
+$repoLink = 'https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025.git'
 $pythonVenvPath = "$desktopPath\$repoName\Notebooks\"
-$gitBranch = 'init_setup_edition_2'
+# $gitBranch = 'init_setup_edition_2'
 
 # --- Utility functions ---
 function Write-Info($msg) { Write-Host $msg -ForegroundColor Green }
@@ -203,14 +203,14 @@ if (-not (Test-Path $repoName)) {
     Write-Info 'Repository already exists. Skipping clone.'
 }
 
-    try {
-        Set-Location $repoName
-        Write-Info "Switching to branch: $gitBranch"
-        git checkout $gitBranch
-    } catch {
-        Write-ErrorMsg "An error occurred while trying to switch branches: $_"
-        $failures += "Git checkout branch error"
-    }
+    # try {
+    #     Set-Location $repoName
+    #     Write-Info "Switching to branch: $gitBranch"
+    #     git checkout $gitBranch
+    # } catch {
+    #     Write-ErrorMsg "An error occurred while trying to switch branches: $_"
+    #     $failures += "Git checkout branch error"
+    # }
 
 
 # --- Step 7: Create a virtual environment and install dependencies ---
