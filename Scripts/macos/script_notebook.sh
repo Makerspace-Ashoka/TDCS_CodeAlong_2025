@@ -223,6 +223,44 @@ setup_environment_and_shell() {
     log_success "Environment setup completed."
 }
 
+stash_pull_stash_pop() {
+    log_info "Stashing, pulling, and popping changes..."
+
+    # Stash any local changes
+    if git diff-index --quiet HEAD --; then
+        log_info "No local changes to stash."
+    else
+        log_info "Stashing local changes..."
+        git stash push -m "Stashed changes before script execution"
+    fi
+
+    # Pull latest changes
+    log_info "Pulling latest changes from repository..."
+    git pull
+
+    # Pop the stash if it exists
+    if git stash list | grep -q "Stashed changes before script execution"; then
+        log_info "Popping stashed changes..."
+        git stash pop
+    else
+        log_info "No stashed changes to pop."
+    fi
+}
+
+
+navigate_to_local_repo() {
+    local repo_path="$HOME/Desktop/TDCS_CodeAlong_2025"
+    if [ -d "$repo_path" ]; then
+        log_info "Navigating to local repository: $repo_path"
+        cd "$repo_path" || {
+            log_error "Could not navigate to local repository directory: $repo_path"
+            exit 1
+        }
+    else
+        log_error "Local repository not found at: $repo_path"
+        exit 1
+    fi
+}
 
 # Main execution
 
@@ -302,6 +340,10 @@ if [ -d "$PROJECT_DIR" ]; then
     fi
 fi
 
+# Day-2
+log_info "Setting up Day-2 environment..."
+navigate_to_local_repo
+stash_pull_stash_pop
 
 if [ -d "$PROJECT_DIR" ]; then
     # Open VS Code
