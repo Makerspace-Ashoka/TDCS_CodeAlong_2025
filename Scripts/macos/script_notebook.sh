@@ -243,8 +243,8 @@ fi
 
 # Clone repository
 log_info "Cloning YSP TDCS repository..."
-REPO_DIR="$HOME/Desktop/YSP_TDCS_2025"
-if git clone https://github.com/Makerspace-Ashoka/YSP_TDCS_2025.git "$REPO_DIR" 2>/dev/null; then
+REPO_DIR="$HOME/Desktop/TDCS_CodeAlong_2025"
+if git clone https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025.git "$REPO_DIR" 2>/dev/null; then
     log_success "Repository cloned to Desktop."
 
 else
@@ -259,21 +259,21 @@ else
 fi
 
 # Checkout to the correct branch
-GIT_BRANCH="mac-script-daily"
+# GIT_BRANCH="mac-script-daily"
 
-if [ -d "$REPO_DIR" ]; then
-    cd "$REPO_DIR" || {
-        log_error "Could not navigate to repository directory"
-        exit 1
-    }
+# if [ -d "$REPO_DIR" ]; then
+#     cd "$REPO_DIR" || {
+#         log_error "Could not navigate to repository directory"
+#         exit 1
+#     }
 
-    if git checkout "$GIT_BRANCH" 2>/dev/null; then
-        log_success "Checked out to branch '$GIT_BRANCH'."
-    else    
-        log_error "Failed to checkout to branch '$GIT_BRANCH'."
-    fi
+#     if git checkout "$GIT_BRANCH" 2>/dev/null; then
+#         log_success "Checked out to branch '$GIT_BRANCH'."
+#     else    
+#         log_error "Failed to checkout to branch '$GIT_BRANCH'."
+#     fi
 
-fi
+# fi
 
 
 # Setup UV environment
