@@ -287,7 +287,7 @@ if (Test-Path $repoPath) {
 }
 
 
-# --- Step 9: Open VS Code in appropriate folder ---
+# --- Step 8: Open VS Code in appropriate folder ---
 Write-Host @'
 ===========================================================
   [ Step 9/9: Opening VS Code in the appropriate folder ]
