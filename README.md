@@ -20,6 +20,7 @@ For Day 2, we will be updating the already cloned repository and moving forward 
 
    Or if you are using macOS 🍏:
    ```bash
+   bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
     ```
 4. Paste the command and hit **Enter**.
 5. Wait for the process to complete. This will update your local repository with the latest changes.
