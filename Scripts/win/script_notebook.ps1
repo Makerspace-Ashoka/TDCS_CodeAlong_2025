@@ -3,6 +3,7 @@ $desktopPath = [System.Environment]::GetFolderPath('Desktop')
 $repoName = 'TDCS_CodeAlong_2025'
 $repoLink = 'https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025.git'
 $pythonVenvPath = "$desktopPath\$repoName\Notebooks\"
+$repoPath = "$desktopPath\$repoName"
 # $gitBranch = 'init_setup_edition_2'
 
 # --- Utility functions ---
@@ -42,7 +43,7 @@ Write-ProgressMsg "Starting setup in: $desktopPath"
 # --- Step 1: Winget ---
 Write-Host @'
 ======================================
-  [ Step 1/8: Checking for Winget ]
+  [ Step 1/9: Checking for Winget ]
 ======================================
 '@ -ForegroundColor Magenta
 
@@ -70,7 +71,7 @@ if (-not $winget) {
 # --- Step 2: Git ---
 Write-Host @'
 ==================================
-  [ Step 2/8: Checking for Git ]
+  [ Step 2/9: Checking for Git ]
 ==================================
 '@ -ForegroundColor Magenta
 
@@ -101,7 +102,7 @@ try {
 # --- Step 3: UV ---
 Write-Host @'
 ===================================
-  [ Step 3/8: Checking for UV ]
+  [ Step 3/9: Checking for UV ]
 ===================================
 '@ -ForegroundColor Magenta
 
@@ -132,7 +133,7 @@ try {
 # --- Step 4: Visual Studio Code ---
 Write-Host @'
 =================================================
-  [ Step 4/8: Checking for Visual Studio Code ]
+  [ Step 4/9: Checking for Visual Studio Code ]
 =================================================
 '@ -ForegroundColor Magenta
 
@@ -163,7 +164,7 @@ try {
 # --- Step 5: Install VS Code extensions ---
 Write-Host @'
 ===============================================
-  [ Step 5/8: Installing VS Code extensions ]
+  [ Step 5/9: Installing VS Code extensions ]
 ===============================================
 '@ -ForegroundColor Magenta
 
@@ -181,7 +182,7 @@ foreach ($ext in $extensions) {
 # --- Step 6: Clone the repository ---
 Write-Host @'
 ===================================================
-  [ Step 6/8: Cloning the repository to Desktop ]
+  [ Step 6/9: Cloning the repository to Desktop ]
 ===================================================
 '@ -ForegroundColor Magenta
 
@@ -216,7 +217,7 @@ if (-not (Test-Path $repoName)) {
 # --- Step 7: Create a virtual environment and install dependencies ---
 Write-Host @'
 =========================================================
-   [ Step 7/8: Setting up Python virtual environment ]
+   [ Step 7/9: Setting up Python virtual environment ]
 =========================================================
 '@ -ForegroundColor Magenta
 
@@ -244,10 +245,52 @@ if (Test-Path $pythonVenvPath) {
     $failures += "Python virtual environment setup failed"
 }
 
+# --- Step 9: Stash - Pull - Stash Pop ---
+Write-Host @'
+=========================================================
+  [ Step 8/9: Stash - Pull - Stash Pop ]
+=========================================================
+'@ -ForegroundColor Magenta
+
+if (Test-Path $repoPath) {
+    Set-Location $repoPath
+    try {
+
+        if ( git diff-index --quiet HEAD -- ) {
+            Write-Info "No changes to stash."
+        } else {
+            Write-Info "Changes detected. Stashing..."
+            git stash push -m "Stashed changes before script execution" | Out-Null
+        }
+        
+        Write-Info "Pulling latest changes..."
+        git pull | Out-Null
+        
+
+        # Check if stash was created
+        if (git stash list | Select-String -Pattern "Stashed changes before script execution") {
+            Write-Info "Stash Found, applying stashed changes..."
+            git stash pop | Out-Null
+
+        } else {
+            Write-Info "No stash found."
+        }
+        
+        Write-Info "Stash - Pull - Stash Pop completed successfully."
+    } catch {
+        Write-ErrorMsg "An error occurred during stash, pull, or stash pop: $_"
+        $failures += "Git stash/pull/pop failed"
+    }
+} else {
+    Write-ErrorMsg 'Appropriate folder not found for Git operations.'
+    $failures += "Git operations failed"
+}
+
+
 # --- Step 8: Open VS Code in appropriate folder ---
 Write-Host @'
 ===========================================================
-  [ Step 8/8: Opening VS Code in the appropriate folder ]
+  [ Step 8/9: Opening VS Code in the appropriate folder ]
 ===========================================================
 '@ -ForegroundColor Magenta
 
