@@ -16,6 +16,7 @@ For Day 2, we will be updating the already cloned repository and moving forward 
 
     If you are using Windows 🪟:
    ```powershell
+   powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/win/script_notebook.ps1' | iex }"
    ```
 
    Or if you are using macOS 🍏:
