@@ -12,7 +12,7 @@ For Day 2, we will be updating the already cloned repository and moving forward 
 
 ### 🔧 What to Do
 1. Open your terminal or command prompt.
-3. Copy the following command based on your operating system:
+2. Copy the following command based on your operating system:
 
     If you are using Windows 🪟:
    ```powershell
@@ -23,9 +23,9 @@ For Day 2, we will be updating the already cloned repository and moving forward 
    ```bash
    bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
     ```
-4. Paste the command and hit **Enter**.
-5. Wait for the process to complete. This will update your local repository with the latest changes.
-6. Once done, you can start working on the Python exercises. 
+3. Paste the command and hit **Enter**.
+4. Wait for the process to complete. This will update your local repository with the latest changes.
+5. Once done, you can start working on the Python exercises. 
 
 
 ---
