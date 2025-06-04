@@ -245,7 +245,7 @@ if (Test-Path $pythonVenvPath) {
     $failures += "Python virtual environment setup failed"
 }
 
-# --- Step 9: Stash - Pull - Stash Pop ---
+# --- Step 8: Stash - Pull - Stash Pop ---
 Write-Host @'
 =========================================================
   [ Step 8/9: Stash - Pull - Stash Pop ]
@@ -287,10 +287,10 @@ if (Test-Path $repoPath) {
 }
 
 
-# --- Step 8: Open VS Code in appropriate folder ---
+# --- Step 9: Open VS Code in appropriate folder ---
 Write-Host @'
 ===========================================================
-  [ Step 8/9: Opening VS Code in the appropriate folder ]
+  [ Step 9/9: Opening VS Code in the appropriate folder ]
 ===========================================================
 '@ -ForegroundColor Magenta
 
@@ -308,6 +308,8 @@ Write-Host @'
              [ Final Summary ]
 =========================================
 '@ -ForegroundColor Cyan
+
+Set-Location $repoPath
 
 if ($failures.Count -eq 0) {
     Write-Host "All steps completed successfully!" -ForegroundColor Green
