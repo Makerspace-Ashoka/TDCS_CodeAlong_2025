@@ -6,6 +6,30 @@
 </div>
 
 ---
+
+## 🗓️ Day 3: June 5th, 2025
+
+For Day 3, we will again update the already cloned repository and move forward with the python exercises.
+
+### 🔧 What to Do
+1. Open your terminal or powershell.
+2. Copy the following command based on your operating system:
+
+    If you are using Windows 🪟:
+   ```powershell
+   powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/win/script_notebook.ps1' | iex }"
+   ```
+
+   Or if you are using macOS 🍏:
+   ```bash
+   bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
+    ```
+3. Paste the command and hit **Enter**.
+4. Wait for the process to complete. This will update your local repository with the latest changes.
+5. Once done, you can start working on the Python exercises. 
+
+--- 
+
 ## 🗓️ Day 2: June 4th, 2025
 
 For Day 2, we will be updating the already cloned repository and moving forward with the python exercises.
