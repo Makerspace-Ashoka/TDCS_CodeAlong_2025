@@ -245,7 +245,11 @@ if (Test-Path $pythonVenvPath) {
     $failures += "Python virtual environment setup failed"
 }
 
+<<<<<<< HEAD
 # --- Step 8: Stash - Pull - Stash Pop ---
+=======
+# --- Step 9: Stash - Pull - Stash Pop ---
+>>>>>>> 88ab61981b66ee5f286d4020dc1d747cd650e0aa
 Write-Host @'
 =========================================================
   [ Step 8/9: Stash - Pull - Stash Pop ]
@@ -290,7 +294,11 @@ if (Test-Path $repoPath) {
 # --- Step 8: Open VS Code in appropriate folder ---
 Write-Host @'
 ===========================================================
+<<<<<<< HEAD
   [ Step 9/9: Opening VS Code in the appropriate folder ]
+=======
+  [ Step 8/9: Opening VS Code in the appropriate folder ]
+>>>>>>> 88ab61981b66ee5f286d4020dc1d747cd650e0aa
 ===========================================================
 '@ -ForegroundColor Magenta
 
