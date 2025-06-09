@@ -273,6 +273,9 @@ if (Test-Path $repoPath) {
         git submodule init | Out-Null
         git submodule update | Out-Null
         Write-Info "Submodule initialized and updated successfully."
+        
+        git pull origin main | Out-Null
+        Write-Info "Pull from main branch completed successfully."
 
         # Check if stash was created
         if (git stash list | Select-String -Pattern "Stashed changes before script execution") {
