@@ -1,0 +1,3 @@
+[submodule "ysp-esp32-mesh-firmware"]
+	path = ysp-esp32-mesh-firmware
+	url = https://github.com/Makerspace-Ashoka/ysp-esp32-mesh-firmware

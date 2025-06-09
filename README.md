@@ -7,6 +7,40 @@
 
 ---
 
+## 🗓️ Day 5: June 10th, 2025
+Day 5 is all about getting started with our ESP32 exercises. You will be working with a Seedstudio XIAO ESP32C3 board, which is a compact and powerful microcontroller perfect for IoT projects.
+We've flashed the esp's with our custom firmware. This firmware will make all the esp's present in this room talk to each other by forming a mesh network.
+
+
+### 🔧 What to Do
+1. Hardware Setup:
+   - Connect the LED strip to the Seedstudio XIAO ESP32C3 board. Wire the LED strip to the board as follows:
+   - **LED Strip Connections**:
+     - **VCC**  on the LED Strip to **VUSB** on the ESP32 Board
+     - **GND** on the LED Strip to **GND** on the ESP32 Board
+     - **Data** on the LED Strip to **D10** on the ESP32 Board
+2. Once the hardware it ready, Plug in the board to your computer using a USB cable.
+3. After about 5 Seconds, the LED strip should light for a second and then turn off. This indicates that the firmware is running correctly.
+
+5. Open your terminal or command prompt.
+6. Copy the following command based on your operating system:
+
+    If you are using Windows 🪟:
+   ```powershell
+   powershell -NoProfile -ExecutionPolicy Bypass -Command "& { iwr -useb 'https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/win/script_notebook.ps1' | iex }"
+   ```
+
+   Or if you are using macOS 🍏:
+   ```bash
+   bash -c "cd $(mktemp -d) && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/script_notebook.sh -o run.sh && curl -fsSL https://raw.githubusercontent.com/Makerspace-Ashoka/TDCS_CodeAlong_2025/refs/heads/main/Scripts/macos/Brewfile -o Brewfile && bash run.sh && cd -"
+    ```
+
+
+## 🗓️ Day 4: June 9th, 2025
+For Day 4, we will again update the already cloned repository and move forward with the python exercises.
+
+Just follow the same steps as Day 3 to update your local repository.
+
 ## 🗓️ Day 3: June 5th, 2025
 
 For Day 3, we will again update the already cloned repository and move forward with the python exercises.
