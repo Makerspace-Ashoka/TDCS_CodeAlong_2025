@@ -247,6 +247,33 @@ stash_pull_stash_pop() {
     fi
 }
 
+handle_mesh_submodule() {
+    log_info "Handling mesh submodule..."
+    local mesh_submodule_path="$HOME/Desktop/TDCS_CodeAlong_2025/ysp-esp32-mesh-firmware"
+    # Check if the mesh submodule exists
+    if [ -d "$mesh_submodule_path" ]; then
+        log_info "Mesh submodule already exists. Pulling latest changes..."
+        cd "$mesh_submodule_path" || {
+            log_error "Could not navigate to mesh submodule directory"
+            exit 1
+        }
+        git submodule init
+        git submodule update
+        git pull origin main || {
+            log_error "Failed to pull latest changes for mesh submodule"
+            exit 1
+        }
+        log_success "Mesh submodule updated."
+    else
+        log_info "Mesh submodule not found. Cloning..."
+        log_success "Mesh submodule cloned."
+    fi
+
+    cd - >/dev/null || {
+        log_error "Could not return to previous directory"
+        exit 1
+    }
+}
 
 navigate_to_local_repo() {
     local repo_path="$HOME/Desktop/TDCS_CodeAlong_2025"
@@ -316,6 +343,7 @@ fi
 
 # Setup UV environment
 PROJECT_DIR="$REPO_DIR/Notebooks"
+
 if [ -d "$PROJECT_DIR" ]; then
     log_info "Project directory found: $PROJECT_DIR"
     cd "$PROJECT_DIR" || {
@@ -345,11 +373,16 @@ log_info "Setting up Day-2 environment..."
 navigate_to_local_repo
 stash_pull_stash_pop
 
-if [ -d "$PROJECT_DIR" ]; then
+# YSP Mesh Day - Day 5
+handle_mesh_submodule
+# Update UV
+MESH_REPO_PYTHON_DIR="$REPO_DIR/ysp-esp32-mesh-firmware/python-interface/src"
+if [ -d "$MESH_REPO_PYTHON_DIR" ]; then
     # Open VS Code
     if command_exists code; then
         log_info "Opening Visual Studio Code..."
-        code "$PROJECT_DIR"
+        uv 
+        code "$MESH_REPO_PYTHON_DIR"
         log_success "VS Code opened in project directory."
     elif is_vscode_installed; then
         log_info "Opening VS Code via open command..."
