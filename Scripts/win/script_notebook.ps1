@@ -266,6 +266,12 @@ if (Test-Path $repoPath) {
         Write-Info "Pulling latest changes..."
         git pull | Out-Null
         
+        Write-Info "Pull completed successfully."
+        # init and sync ysp-esp32-mesh-firmware submodule
+        set-location $repoPath\ysp-esp32-mesh-firmware
+        git submodule init | Out-Null
+        git submodule update | Out-Null
+        Write-Info "Submodule initialized and updated successfully."
 
         # Check if stash was created
         if (git stash list | Select-String -Pattern "Stashed changes before script execution") {
