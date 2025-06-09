@@ -3,6 +3,7 @@ $desktopPath = [System.Environment]::GetFolderPath('Desktop')
 $repoName = 'TDCS_CodeAlong_2025'
 $repoLink = 'https://github.com/Makerspace-Ashoka/TDCS_CodeAlong_2025.git'
 $pythonVenvPath = "$desktopPath\$repoName\Notebooks\"
+$meshPythonPath = "$desktopPath\$repoName\ysp-esp32-mesh-firmware\python-interface\src"
 $repoPath = "$desktopPath\$repoName"
 # $gitBranch = 'init_setup_edition_2'
 
@@ -43,7 +44,7 @@ Write-ProgressMsg "Starting setup in: $desktopPath"
 # --- Step 1: Winget ---
 Write-Host @'
 ======================================
-  [ Step 1/9: Checking for Winget ]
+  [ Step 1/10: Checking for Winget ]
 ======================================
 '@ -ForegroundColor Magenta
 
@@ -71,7 +72,7 @@ if (-not $winget) {
 # --- Step 2: Git ---
 Write-Host @'
 ==================================
-  [ Step 2/9: Checking for Git ]
+  [ Step 2/10: Checking for Git ]
 ==================================
 '@ -ForegroundColor Magenta
 
@@ -102,7 +103,7 @@ try {
 # --- Step 3: UV ---
 Write-Host @'
 ===================================
-  [ Step 3/9: Checking for UV ]
+  [ Step 3/10: Checking for UV ]
 ===================================
 '@ -ForegroundColor Magenta
 
@@ -133,7 +134,7 @@ try {
 # --- Step 4: Visual Studio Code ---
 Write-Host @'
 =================================================
-  [ Step 4/9: Checking for Visual Studio Code ]
+  [ Step 4/10: Checking for Visual Studio Code ]
 =================================================
 '@ -ForegroundColor Magenta
 
@@ -164,7 +165,7 @@ try {
 # --- Step 5: Install VS Code extensions ---
 Write-Host @'
 ===============================================
-  [ Step 5/9: Installing VS Code extensions ]
+  [ Step 5/10: Installing VS Code extensions ]
 ===============================================
 '@ -ForegroundColor Magenta
 
@@ -182,7 +183,7 @@ foreach ($ext in $extensions) {
 # --- Step 6: Clone the repository ---
 Write-Host @'
 ===================================================
-  [ Step 6/9: Cloning the repository to Desktop ]
+  [ Step 6/10: Cloning the repository to Desktop ]
 ===================================================
 '@ -ForegroundColor Magenta
 
@@ -217,7 +218,7 @@ if (-not (Test-Path $repoName)) {
 # --- Step 7: Create a virtual environment and install dependencies ---
 Write-Host @'
 =========================================================
-   [ Step 7/9: Setting up Python virtual environment ]
+   [ Step 7/10: Setting up Python virtual environment ]
 =========================================================
 '@ -ForegroundColor Magenta
 
@@ -248,7 +249,7 @@ if (Test-Path $pythonVenvPath) {
 # --- Step 8: Stash - Pull - Stash Pop ---
 Write-Host @'
 =========================================================
-  [ Step 8/9: Stash - Pull - Stash Pop ]
+  [ Step 8/10: Stash - Pull - Stash Pop ]
 =========================================================
 '@ -ForegroundColor Magenta
 
@@ -292,17 +293,43 @@ if (Test-Path $repoPath) {
     $failures += "Git operations failed"
 }
 
+Write-Host @'
+===========================================================
+  [ Step 9/10: Updating Python Dependencies for Mesh Firmware Python Interface ]
+===========================================================
+'@ -ForegroundColor Magenta
+
+if (Test-Path $meshPythonPath) {
+    Set-Location $meshPythonPath
+    try {
+        Write-Info "Running 'uv sync' in mesh Python interface folder..."
+        $uvSyncResult = & uv sync 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            Write-Info "uv sync completed successfully in mesh Python interface."
+        } else {
+            Write-ErrorMsg "uv sync failed in mesh Python interface. Error: $uvSyncResult"
+            $failures += "uv sync in mesh Python interface failed"
+        }
+    } catch {
+        Write-ErrorMsg "An error occurred while trying to run 'uv sync' in mesh Python interface: $_"
+        $failures += "uv sync in mesh Python interface error"
+    }
+} else {
+    Write-ErrorMsg 'Mesh Python interface folder not found.'
+    $failures += "Mesh Python interface folder not found"
+}
+
 
 # --- Step 9: Open VS Code in appropriate folder ---
 Write-Host @'
 ===========================================================
-  [ Step 9/9: Opening VS Code in the appropriate folder ]
+  [ Step 10/10: Opening VS Code in the appropriate folder ]
 ===========================================================
 '@ -ForegroundColor Magenta
 
-if (Test-Path $pythonVenvPath) {
-    Write-Info "Opening VS Code in: $pythonVenvPath"
-    code $pythonVenvPath
+if (Test-Path $meshPythonPath) {
+    Write-Info "Opening VS Code in: $meshPythonPath"
+    code $meshPythonPath
 } else {
     Write-ErrorMsg 'Appropriate folder not found. Please check manually.'
     $failures += "Opening VS Code in appropriate folder failed"
