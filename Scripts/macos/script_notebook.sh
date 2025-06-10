@@ -347,7 +347,7 @@ log_info "Setting up Day-2 environment..."
 navigate_to_local_repo
 stash_pull_stash_pop
 
-$MESH_PATH="$REPO_DIR/ysp-esp32-mesh-firmware"
+MESH_PATH="$REPO_DIR/ysp-esp32-mesh-firmware"
 echo "Mesh Path: $MESH_PATH"
 # do git stash
 git stash push -m "Stashed changes before script execution"
