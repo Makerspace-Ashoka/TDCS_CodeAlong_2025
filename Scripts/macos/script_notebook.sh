@@ -347,6 +347,16 @@ log_info "Setting up Day-2 environment..."
 navigate_to_local_repo
 stash_pull_stash_pop
 
+# make sure we are in the repo directory
+if [ ! -d "$REPO_DIR" ]; then
+    log_error "Repository directory not found: $REPO_DIR"
+    exit 1
+fi
+cd "$REPO_DIR" || {
+    log_error "Could not navigate to repository directory"
+    exit 1
+}
+
 MESH_PATH="$REPO_DIR/ysp-esp32-mesh-firmware"
 echo "Mesh Path: $MESH_PATH"
 # do git stash
