@@ -370,9 +370,8 @@ if [ -d "$MESH_PATH" ]; then
         log_error "Could not navigate to mesh python directory"
         exit 1
     }
-    git init
+    git submodule init
     git submodule update --init --recursive 
-    git pull origin main
 
     if [ $? -eq 0 ]; then
         log_success "Git submodules updated successfully."
