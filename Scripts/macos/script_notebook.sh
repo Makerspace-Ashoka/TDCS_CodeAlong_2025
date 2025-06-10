@@ -349,6 +349,8 @@ stash_pull_stash_pop
 
 $MESH_PATH="$REPO_DIR/ysp-esp32-mesh-firmware"
 
+# do git stash
+git stash push -m "Stashed changes before script execution"
 
 # Git Submodule update
 
@@ -396,6 +398,15 @@ if command_exists uv; then
 else
     log_error "Command 'uv' not found. This should've been installed by the Brewfile."
 fi
+
+# Stash pop 
+if git stash list | grep -q "Stashed changes before script execution"; then
+    log_info "Popping stashed changes..."
+    git stash pop
+else
+    log_info "No stashed changes to pop."
+fi
+
 
 if [ -d "$MESH_PYTHON_PATH" ]; then
     # Open VS Code
