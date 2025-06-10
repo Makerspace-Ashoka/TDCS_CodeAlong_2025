@@ -363,6 +363,7 @@ if [ -d "$MESH_PATH" ]; then
     git init
     git submodule update --init --recursive 
     git pull origin main
+
     if [ $? -eq 0 ]; then
         log_success "Git submodules updated successfully."
     else
@@ -373,7 +374,7 @@ else
     log_error "Mesh Python directory not found: $MESH_PATH"
 fi
 
-$MESH_PYTHON_PATH = "$MESH_PATH/python-interface/src"
+MESH_PYTHON_PATH="$MESH_PATH/python-interface/src"
 
 if [ -d "$MESH_PYTHON_PATH" ]; then
     log_info "Navigating to mesh python directory: $MESH_PYTHON_PATH"
