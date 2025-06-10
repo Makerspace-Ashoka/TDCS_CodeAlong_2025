@@ -262,6 +262,8 @@ navigate_to_local_repo() {
     fi
 }
 
+
+
 # Main execution
 
 cd $HOME || {
@@ -345,21 +347,71 @@ log_info "Setting up Day-2 environment..."
 navigate_to_local_repo
 stash_pull_stash_pop
 
-if [ -d "$PROJECT_DIR" ]; then
+$MESH_PATH="$REPO_DIR/ysp-esp32-mesh-firmware"
+
+
+# Git Submodule update
+
+if [ -d "$MESH_PATH" ]; then
+    log_info "Updating git submodules in $MESH_PATH..."
+    cd "$MESH_PATH" || {
+        log_error "Could not navigate to mesh python directory"
+        exit 1
+    }
+    git init
+    git submodule update --init --recursive 
+    git pull origin main
+    if [ $? -eq 0 ]; then
+        log_success "Git submodules updated successfully."
+    else
+        log_error "Failed to update git submodules"
+    fi
+
+else
+    log_error "Mesh Python directory not found: $MESH_PATH"
+fi
+
+$MESH_PYTHON_PATH = "$MESH_PATH/python-interface/src"
+
+if [ -d "$MESH_PYTHON_PATH" ]; then
+    log_info "Navigating to mesh python directory: $MESH_PYTHON_PATH"
+    cd "$MESH_PYTHON_PATH" || {
+        log_error "Could not navigate to mesh python directory"
+        exit 1
+    }
+else
+    log_error "Mesh Python directory not found: $MESH_PYTHON_PATH"
+    exit 1
+fi
+
+# Install Python dependencies
+log_info "Installing Python dependencies via uv..."
+if command_exists uv; then
+    uv sync
+    if [ $? -eq 0 ]; then
+        log_success "Python dependencies installed successfully."
+    else
+        log_error "Failed to install Python dependencies"
+    fi
+else
+    log_error "Command 'uv' not found. This should've been installed by the Brewfile."
+fi
+
+if [ -d "$MESH_PYTHON_PATH" ]; then
     # Open VS Code
     if command_exists code; then
         log_info "Opening Visual Studio Code..."
-        code "$PROJECT_DIR"
+        code "$MESH_PYTHON_PATH"
         log_success "VS Code opened in project directory."
     elif is_vscode_installed; then
         log_info "Opening VS Code via open command..."
-        open -a "Visual Studio Code" .
+        open -a "Visual Studio Code" "$MESH_PYTHON_PATH"
         log_success "VS Code opened in project directory."
     else
         log_error "VS Code not available"
     fi
 else
-    log_error "Project directory not found: $PROJECT_DIR"
+    log_error "Project directory not found: $MESH_PYTHON_PATH"
 fi
 
 # Report any failures
